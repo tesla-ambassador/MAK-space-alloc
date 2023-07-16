@@ -3,7 +3,7 @@ import Dashboard from "@/components/layout/Dashboard";
 import { BookingContext } from "@/context/BookingContext";
 import HallOverview from "@/components/misc/HallOverview";
 
-export default function Dashboard() {
+export default function dash() {
   const { isViewerOpen } = useContext(BookingContext);
   return (
     <div>
