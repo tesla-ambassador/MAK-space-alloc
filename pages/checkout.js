@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from "react";
+import React from "react";
 import CheckoutForm from "@/components/misc/CheckoutForm";
 
 export default function checkout() {

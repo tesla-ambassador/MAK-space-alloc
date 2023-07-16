@@ -225,7 +225,7 @@ export default function CheckoutForm() {
             Notifications
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            We'll always let you know when the dean approves or denies your
+            We&apos;ll always let you know when the dean approves or denies your
             booking by email.
           </p>
           <button
