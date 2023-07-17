@@ -45,8 +45,7 @@ export default function HallOverview() {
     isViewerOpen,
     handleViewer,
     isSignedIn,
-    toggleSignIn,
-    changeProfileInformation,
+    signInToApp,
   } = useContext(BookingContext);
 
   const handleSubmit = (e) => {
@@ -171,16 +170,7 @@ export default function HallOverview() {
                             type="button"
                             className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                             onClick={() => {
-                              signInWithGoogle()
-                                .then((result) => {
-                                  const name = result.user.displayName;
-                                  const profilePhoto = result.user.photoURL;
-                                  changeProfileInformation(name, profilePhoto);
-                                })
-                                .catch((err) => {
-                                  console.log(err);
-                                });
-                              toggleSignIn();
+                              signInToApp();
                               closeViewer();
                             }}
                           >
