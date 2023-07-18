@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDgj0Xo6vTv033WlmAFDSMZcK2ExIICJu0",
@@ -21,7 +21,10 @@ const app = initializeApp(firebaseConfig);
 
 // Authentication
 const auth = getAuth();
-export const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
 export const signOutOfapp = () => signOut(auth);
+
+// Database Instantiations and operations
+export const db = getFirestore(app);
+export const colRef = collection(db, "user_bookings");

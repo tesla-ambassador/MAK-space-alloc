@@ -3,8 +3,8 @@ import Confirmation from "./Confirmation";
 import CheckoutContent from "../layout/CheckoutContent";
 import { BookingContext } from "@/context/BookingContext";
 import { send } from "@emailjs/browser";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "@/firebase";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { db, colRef } from "@/firebase";
 
 const userDetails = {
   firstName: "",
@@ -14,6 +14,19 @@ const userDetails = {
   city: "",
   bookingDate: "",
 };
+
+let user_data = [];
+
+getDocs(colRef)
+  .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      user_data.push({ ...doc.data() });
+    });
+    console.log(user_data);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 export default function CheckoutForm() {
   const { viewerData } = useContext(BookingContext);
@@ -46,38 +59,71 @@ export default function CheckoutForm() {
       viewerData.name,
   };
 
+  const validDate = (inputArray, dateChosen, hallChosen) => {
+    inputArray.forEach((element) => {
+      if (
+        element.bookingDate === dateChosen &&
+        element.isBookable === false &&
+        element.hallName === hallChosen
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    send(
-      "service_6hk5l7b",
-      "template_pavmikk",
-      template_params,
-      "uvKhxoLr4PhTCanw4"
-    ).then(
-      (result) => {
-        console.log(result.text);
-      },
-      (error) => {
-        console.log(error.text);
+    let submit = true;
+    user_data.forEach((element) => {
+      if (
+        JSON.stringify(element.bookingDate) ===
+          JSON.stringify(data.bookingDate) &&
+        JSON.stringify(element.hallName) === JSON.stringify(viewerData.name) &&
+        element.isBookable === false
+      ) {
+        alert("Sorry the space is already booked for that day!");
+        submit = false;
       }
-    );
-    addDoc(collection(db, "user_bookings"), {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      phone: data.phone,
-      bookingDate: data.bookingDate,
-      city: data.city,
-      isBookable: true,
-    })
-      .then(() => {
-        console.log("Success");
+    });
+
+    // This Function executes if there are no clashing entries
+    if (submit === true) {
+      send(
+        "service_6hk5l7b",
+        "template_pavmikk",
+        template_params,
+        "uvKhxoLr4PhTCanw4"
+      ).then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+      addDoc(collection(db, "user_bookings"), {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        bookingDate: data.bookingDate,
+        city: data.city,
+        isBookable: true,
+        hallName: viewerData.name,
       })
-      .catch((err) => {
-        console.log(err);
-      });
-    setData(userDetails);
-    setIsSubmitted(true);
+        .then(() => {
+          console.log("Success");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setData(userDetails);
+      setIsSubmitted(true);
+    } else {
+      return;
+    }
   };
 
   return (
@@ -243,3 +289,35 @@ export default function CheckoutForm() {
     </form>
   );
 }
+
+// send(
+//   "service_6hk5l7b",
+//   "template_pavmikk",
+//   template_params,
+//   "uvKhxoLr4PhTCanw4"
+// ).then(
+//   (result) => {
+//     console.log(result.text);
+//   },
+//   (error) => {
+//     console.log(error.text);
+//   }
+// );
+// addDoc(collection(db, "user_bookings"), {
+//   firstName: data.firstName,
+//   lastName: data.lastName,
+//   email: data.email,
+//   phone: data.phone,
+//   bookingDate: data.bookingDate,
+//   city: data.city,
+//   isBookable: true,
+//   hallName: viewerData.name,
+// })
+//   .then(() => {
+//     console.log("Success");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+// setData(userDetails);
+// setIsSubmitted(true);
