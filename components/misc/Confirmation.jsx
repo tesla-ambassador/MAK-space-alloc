@@ -11,7 +11,7 @@ export default function Confirmation({ toggleSubmission }) {
         We&apos;ll always let you know when the dean approves or denies your
         booking by email.
       </p>
-      <Link href={"/"}>
+      <Link href={"/dash"}>
         <button
           onClick={() => {
             toggleSubmission();
