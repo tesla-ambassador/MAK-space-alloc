@@ -2,31 +2,32 @@ import { PersonRounded } from "@mui/icons-material";
 
 const people = [
   {
-    name: "Nakisozi Maria",
-    role: "UI developer",
-    imageUrl: "/profile-images/maria.jpeg",
-  },
-  {
-    name: "Ssesanga Titus",
-    role: "Backend developer",
-    imageUrl: "/profile-images/titus.jpeg",
-  },
-  {
     name: "Keziah Odora",
-    role: "UI developer",
+    role: "Team leader",
     imageUrl: "/profile-images/keziah.jpeg",
   },
   {
+    name: "Ssesanga Titus",
+    role: "Programmer",
+    imageUrl: "/profile-images/titus.jpeg",
+  },
+  {
+    name: "Nakisozi Maria",
+    role: "UI deisgner",
+    imageUrl: "/profile-images/maria.jpeg",
+  },
+  {
     name: "Kasoole Ahmed",
-    role: "UI designer",
+    role: "Project manager",
     imageUrl: "",
   },
   {
     name: "Jooga Derrick",
-    role: "UI designer",
+    role: "Coordinator",
     imageUrl: "",
   },
   // More people...
+  
 ];
 
 export default function Team() {
