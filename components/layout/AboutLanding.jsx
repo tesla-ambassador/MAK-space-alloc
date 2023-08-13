@@ -7,12 +7,18 @@ export default function AboutLanding() {
      relative min-h-screen
      after:absolute after:bg-white after:left-0 after:top-0 after:bottom-0 after:right-0 after:h-full after:w-full after:opacity-20"
     >
-      <div className="relative z-50 isolate px-6 pt-14 lg:px-8">
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+      <div className="relative z-50 isolate px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:py-27">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
-              Your Event. Your Space. Booked in Seconds!
+            <h1 className="text-6xl font-bold tracking-tight text-black sm:text-7xl">
+              Makerere University Space Allocation System
             </h1>
+            <br />
+            <br />
+            <br />
+            <h2 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
+              Your Event. Your Space. Booked in Seconds!
+            </h2>
             <p className="mt-6 text-lg leading-8 text-white">
               Welcome to our cutting-edge event space booking app, where finding
               the ideal venue for your next gathering is a breeze. Discover a
