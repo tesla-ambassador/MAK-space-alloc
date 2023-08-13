@@ -14,6 +14,8 @@ export default function AboutLanding() {
               Makerere University Space Allocation System
             </h1>
             <br />
+            <br />
+            <br />
             <h2 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
               Your Event. Your Space. Booked in Seconds!
             </h2>
