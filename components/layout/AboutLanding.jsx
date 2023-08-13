@@ -14,9 +14,9 @@ export default function AboutLanding() {
               Makerere University Space Allocation System
             </h1>
             <br />
-            <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
+            <h2 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
               Your Event. Your Space. Booked in Seconds!
-            </h1>
+            </h2>
             <p className="mt-6 text-lg leading-8 text-white">
               Welcome to our cutting-edge event space booking app, where finding
               the ideal venue for your next gathering is a breeze. Discover a
